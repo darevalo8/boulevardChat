@@ -66,9 +66,9 @@ class _ConversationPageState extends State<ConversationPage> {
     return Scaffold(
       appBar: appBarMain(context),
       body: Container(
-        child: Stack(
+        child: Column(
           children: [
-            chatMessagesList(),
+            Expanded(child: chatMessagesList()),
             Container(
               alignment: Alignment.bottomCenter,
               child: Container(
