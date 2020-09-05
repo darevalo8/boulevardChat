@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "643520954342",
+    "firebase_url": "https://boulevard-darevalo.firebaseio.com",
+    "project_id": "boulevard-darevalo",
+    "storage_bucket": "boulevard-darevalo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643520954342:android:4b91937056857efdd9e027",
+        "android_client_info": {
+          "package_name": "co.darevalo.boulevard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643520954342-f782j69ctvfh03omp9a0627bs17vppa4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-0_9waRS9XkQB3xbJyCKcOk4mndttNL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643520954342-f782j69ctvfh03omp9a0627bs17vppa4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
