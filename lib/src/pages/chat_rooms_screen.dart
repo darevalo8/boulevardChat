@@ -28,9 +28,7 @@ class _ChatRoomsState extends State<ChatRooms> {
     Constants.myUserName = await HelperFunctions.getUserNameSharedPreference();
 
     databaseService.getUserChats(Constants.myUserName).then((value) {
-      setState(() {
-        chatRoomsStream = value;
-      });
+      setState(() => chatRoomsStream = value);
     });
   }
 
@@ -39,9 +37,7 @@ class _ChatRoomsState extends State<ChatRooms> {
       stream: chatRoomsStream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return Center(child: CircularProgressIndicator());
         }
         return ListView.builder(
           itemCount: snapshot.data.docs.length,
@@ -73,12 +69,14 @@ class _ChatRoomsState extends State<ChatRooms> {
                 Navigator.pushReplacementNamed(context, 'auth');
               },
               child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Icon(Icons.exit_to_app)),
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Icon(Icons.exit_to_app),
+              ),
             )
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff00b9b0),
           child: Icon(Icons.search),
           onPressed: () {
             Navigator.pushNamed(context, 'search_screen');
@@ -91,19 +89,16 @@ class _ChatRoomsState extends State<ChatRooms> {
 class ChatRoomTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
-  const ChatRoomTile({Key key, this.userName, this.chatRoomId})
-      : super(key: key);
+  const ChatRoomTile({Key key, this.userName, this.chatRoomId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ConversationPage(
-                      chatRoomId: this.chatRoomId,
-                    )));
+          context,
+          MaterialPageRoute(builder: (context) => ConversationPage(chatRoomId: this.chatRoomId)),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -114,19 +109,18 @@ class ChatRoomTile extends StatelessWidget {
               width: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(40)),
+                // color: Colors.blue,
+                color: Color(0xff00b9b0),
+                borderRadius: BorderRadius.circular(40),
+              ),
               child: Text(
                 "${this.userName.substring(0, 1).toUpperCase()}",
-                style: mediumTextStyle(),
+                // style: mediumTextStyle(),
+                style: TextStyle(color: Colors.white),
               ),
             ),
-            SizedBox(
-              width: 8,
-            ),
-            Text(
-              this.userName,
-              style: mediumTextStyle(),
-            )
+            SizedBox(width: 8),
+            Text(this.userName, style: mediumTextStyle())
           ],
         ),
       ),

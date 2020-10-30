@@ -17,12 +17,8 @@ class _SearchScreenState extends State<SearchScreen> {
   DatabaseService databaseService = DatabaseService();
   QuerySnapshot searchSnapshot;
   initiateSearch() {
-    databaseService
-        .getUserByUsername(searchTextEditController.text)
-        .then((val) {
-      setState(() {
-        searchSnapshot = val;
-      });
+    databaseService.getUserByUsername(searchTextEditController.text).then((val) {
+      setState(() => searchSnapshot = val);
     });
   }
 
@@ -32,17 +28,12 @@ class _SearchScreenState extends State<SearchScreen> {
     if (userName != Constants.myUserName) {
       String chatRoomId = getChatRoomId(userName, Constants.myUserName);
       List<String> users = [userName, Constants.myUserName];
-      Map<String, dynamic> chatRoomMap = {
-        'users': users,
-        'chatroomId': chatRoomId
-      };
+      Map<String, dynamic> chatRoomMap = {'users': users, 'chatroomId': chatRoomId};
       DatabaseService().createChatRoom(chatRoomId, chatRoomMap);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ConversationPage(
-                    chatRoomId: chatRoomId,
-                  )));
+        context,
+        MaterialPageRoute(builder: (context) => ConversationPage(chatRoomId: chatRoomId)),
+      );
     } else {
       print("no existe");
     }
@@ -71,46 +62,50 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             Container(
-              color: Color(0x54FFFFFF),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              // color: Color(0x54FFFFFF),
+              color: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Row(
                 children: [
                   Expanded(
-                      child: TextField(
-                    controller: searchTextEditController,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Digita un nombre de usuario...",
-                      hintStyle: TextStyle(
-                        color: Colors.white54,
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  )),
-                  GestureDetector(
-                    onTap: () {
-                      initiateSearch();
-                    },
                     child: Container(
-                        height: 40,
-                        width: 40,
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              const Color(0x36FFFFFF),
-                              const Color(0x0FFFFFFF)
-                            ]),
-                            borderRadius: BorderRadius.circular(40)),
-                        child: Image.asset('assets/images/search_white.png')),
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                      color: Colors.white,
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      child: TextField(
+                        controller: searchTextEditController,
+                        style: TextStyle(color: Colors.black87),
+                        decoration: InputDecoration(
+                          hintText: "Digita un nombre de usuario...",
+                          hintStyle: TextStyle(color: Colors.black45),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  GestureDetector(
+                    onTap: initiateSearch,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color(0xff00b9b0),
+                        // gradient: LinearGradient(
+                        //   colors: [const Color(0x36FFFFFF), const Color(0x0FFFFFFF)],
+                        // ),
+                      ),
+                      child: Image.asset('assets/images/search_white.png'),
+                    ),
                   )
                 ],
               ),
             ),
-            SizedBox(
-              height: 9,
-            ),
+            SizedBox(height: 9),
             searchList(),
           ],
         ),
@@ -126,14 +121,8 @@ class _SearchScreenState extends State<SearchScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                userName,
-                style: simpleTextStyle(),
-              ),
-              Text(
-                email,
-                style: simpleTextStyle(),
-              )
+              Text(userName, style: simpleTextStyle()),
+              Text(email, style: simpleTextStyle())
             ],
           ),
           Spacer(),
@@ -144,12 +133,12 @@ class _SearchScreenState extends State<SearchScreen> {
             },
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Text(
-                'Mensaje',
-                style: simpleTextStyle(),
+                color: Color(0xff00b9b0),
+                borderRadius: BorderRadius.circular(30),
               ),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              // child: Text('Mensaje', style: simpleTextStyle()),
+              child: Text('Mensaje', style: TextStyle(color: Colors.white)),
             ),
           )
         ],

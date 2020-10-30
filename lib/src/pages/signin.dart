@@ -70,6 +70,7 @@ class _SignInState extends State<SignIn> {
                   key: formKey,
                   child: Column(
                     children: [
+                      SizedBox(height: 20),
                       TextFormField(
                         validator: (value) {
                           String message;
@@ -84,6 +85,7 @@ class _SignInState extends State<SignIn> {
                         style: simpleTextStyle(),
                         decoration: textFieldInputDecoration("Email"),
                       ),
+                      SizedBox(height: 10),
                       TextFormField(
                           obscureText: true,
                           validator: (val) {
@@ -124,13 +126,16 @@ class _SignInState extends State<SignIn> {
                     padding: EdgeInsets.symmetric(vertical: 20),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        gradient: LinearGradient(colors: [
-                          const Color(0xff007EF4),
-                          const Color(0xff2A75BC)
-                        ])),
+                        color: Colors.black,
+                        // gradient: LinearGradient(colors: [
+                        //   const Color(0xff007EF4),
+                        //   const Color(0xff2A75BC)
+                        // ]),
+                        ),
                     child: Text(
                       "Iniciar Sesión",
-                      style: mediumTextStyle(),
+                      // style: mediumTextStyle(),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ),
@@ -144,10 +149,11 @@ class _SignInState extends State<SignIn> {
                   padding: EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: Colors.white),
+                      color: Colors.white,
+                      border: Border.all(width: 1, color: Colors.black)),
                   child: Text(
                     "Inicia con Google",
-                    style: TextStyle(color: Colors.black87, fontSize: 17),
+                    style: TextStyle(color: Colors.black87, fontSize: 16),
                   ),
                 ),
                 SizedBox(
@@ -160,6 +166,7 @@ class _SignInState extends State<SignIn> {
                       'No tienes cuenta?',
                       style: mediumTextStyle(),
                     ),
+                    SizedBox(width: 5),
                     GestureDetector(
                       onTap: () {
                         widget.toggle();
@@ -170,7 +177,7 @@ class _SignInState extends State<SignIn> {
                         child: Text(
                           'Registrate Ahora',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xff00b9b0),
                               fontSize: 17,
                               decoration: TextDecoration.underline),
                         ),

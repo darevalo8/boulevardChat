@@ -73,6 +73,7 @@ class _SignUpState extends State<SignUp> {
                         key: formKey,
                         child: Column(
                           children: [
+                            SizedBox(height: 20),
                             TextFormField(
                               validator: (value) {
                                 String message;
@@ -85,6 +86,7 @@ class _SignUpState extends State<SignUp> {
                               style: simpleTextStyle(),
                               decoration: textFieldInputDecoration("username"),
                             ),
+                            SizedBox(height: 10),
                             TextFormField(
                               validator: (value) {
                                 String message;
@@ -99,6 +101,7 @@ class _SignUpState extends State<SignUp> {
                               style: simpleTextStyle(),
                               decoration: textFieldInputDecoration("Email"),
                             ),
+                            SizedBox(height: 10),
                             TextFormField(
                                 validator: (val) {
                                   return val.length < 6
@@ -140,13 +143,16 @@ class _SignUpState extends State<SignUp> {
                           padding: EdgeInsets.symmetric(vertical: 20),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
-                              gradient: LinearGradient(colors: [
-                                const Color(0xff007EF4),
-                                const Color(0xff2A75BC)
-                              ])),
+                              color: Colors.black
+                              // gradient: LinearGradient(colors: [
+                              //   const Color(0xff007EF4),
+                              //   const Color(0xff2A75BC)
+                              // ])
+                              ),
                           child: Text(
                             "Registrarse",
-                            style: mediumTextStyle(),
+                            // style: mediumTextStyle(),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ),
                       ),
@@ -160,10 +166,11 @@ class _SignUpState extends State<SignUp> {
                         padding: EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Colors.white),
+                            color: Colors.white,
+                            border: Border.all(width: 1, color: Colors.black)),
                         child: Text(
                           "Registrarse con Google",
-                          style: TextStyle(color: Colors.black87, fontSize: 17),
+                          style: TextStyle(color: Colors.black87, fontSize: 16),
                         ),
                       ),
                       SizedBox(
@@ -176,6 +183,7 @@ class _SignUpState extends State<SignUp> {
                             'Tienes cuenta?',
                             style: mediumTextStyle(),
                           ),
+                          SizedBox(width: 5),
                           GestureDetector(
                             onTap: () {
                               widget.toggle();
@@ -185,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                               child: Text(
                                 'Inicia sesión Ahora',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Color(0xff00b9b0),
                                     fontSize: 17,
                                     decoration: TextDecoration.underline),
                               ),
