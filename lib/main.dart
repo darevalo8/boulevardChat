@@ -53,13 +53,15 @@ class _MyAppState extends State<MyApp> {
 
       // home: SignIn(),
 
-      home: userIsLoggedIn != null
-          ? userIsLoggedIn ? ChatRooms() : AuthenticateHelper()
-          : Container(
-              child: Center(
-                child: AuthenticateHelper(),
-              ),
-            ),
+      initialRoute: 'signup',
+
+      // home: userIsLoggedIn != null
+      //     ? userIsLoggedIn ? ChatRooms() : AuthenticateHelper()
+      //     : Container(
+      //         child: Center(
+      //           child: AuthenticateHelper(),
+      //         ),
+      //       ),
 
       // initialRoute: this.defaultHome,
       routes: applicationRoutes(),
