@@ -12,6 +12,7 @@ final ThemeData lightTheme = ThemeData(
   primaryColor: teal,
   dividerColor: gray,
   primaryColorDark: black,
+  canvasColor: Colors.transparent,
   appBarTheme: AppBarTheme(
     color: Colors.white.withOpacity(0.95),
     elevation: 2,

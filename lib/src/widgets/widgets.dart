@@ -1,3 +1,4 @@
+import 'package:boulevard/src/models/parcero.dart';
 import 'package:boulevard/src/themes/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -66,8 +67,6 @@ class ButtonType1 extends StatelessWidget {
   }
 }
 
-// enum ButtonColors { Amber, Teal, Gray, Black }
-
 class ButtonSocialNetworks extends StatelessWidget {
   final SocialNetworks socialNetwork;
   final Function onPressed;
@@ -132,21 +131,15 @@ class InputFormFieldType1 extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         labelText: labelText,
-        // labelStyle: TextStyle(color: Colors.black),
         hintText: hintText,
         focusedBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: teal),
         ),
-        // disabledBorder: OutlineInputBorder(
-        //   borderRadius: const BorderRadius.all(Radius.circular(10)),
-        //   borderSide: BorderSide(color: gray),
-        // ),
         enabledBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: gray),
         ),
-        // errorStyle: TextStyle(color: Colors.red[100], fontSize: 14),
         errorBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.red),
@@ -155,10 +148,154 @@ class InputFormFieldType1 extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.red),
         ),
-        // prefixIcon: prefixIcon,
-        // hintText: 'Correo electrónico',
-        // border: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(30))),
+      ),
+    );
+  }
+}
+
+class ContactAvatar extends StatelessWidget {
+  final Parcero parcero;
+  final bool online;
+
+  const ContactAvatar({
+    this.parcero,
+    this.online = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(25))),
+        context: context,
+        builder: (context) => ProfileModalBottomSheet(parcero: parcero),
+      ),
+      child: Container(
+        height: 60,
+        width: 60,
+        child: Stack(
+          children: [
+            ClipOval(
+              child: Image(
+                fit: BoxFit.cover,
+                image: parcero.imageUrl == ''
+                    ? AssetImage('assets/fake-images/no_image.png')
+                    : AssetImage(parcero.imageUrl),
+                // : NetworkImage(urlImage), // Descomentar para usar imagenes web
+              ),
+            ),
+            if (online)
+              Positioned(
+                bottom: 2,
+                right: 2,
+                child: Container(
+                  height: 12,
+                  width: 12,
+                  decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                ),
+              )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileModalBottomSheet extends StatelessWidget {
+  final Parcero parcero;
+
+  const ProfileModalBottomSheet({this.parcero});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 10,
+            left: 0,
+            child: Image(
+              height: 260,
+              image: AssetImage('assets/images/plant-04-mod.png'),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipOval(
+                child: Container(
+                  height: 120,
+                  width: 120,
+                  child: Image(
+                    fit: BoxFit.cover,
+                    image: parcero.imageUrl == ''
+                        ? AssetImage('assets/fake-images/no_image.png')
+                        : AssetImage(parcero.imageUrl),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Text(
+                  parcero.name,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(height: 4),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Text(
+                  parcero.location,
+                  style: TextStyle(color: Colors.grey[600]),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Text(
+                  parcero.description,
+                  style: TextStyle(color: Colors.grey[600]),
+                  textAlign: TextAlign.center,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: ButtonType1(
+                  text: 'Ver perfil',
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  onPressed: () {},
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Text(
+                  'Enviar mensaje privado',
+                  style: TextStyle(color: Colors.grey[600]),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -192,9 +329,7 @@ class _CurvedBorderPainter extends CustomPainter {
     final paint = new Paint();
 
     // Propiedades para el lapiz
-    // paint.color = Color(0xff615AAB);
     paint.color = Colors.white;
-    // paint.style = PaintingStyle.stroke; // Solo pinta los bordes
     paint.style = PaintingStyle.fill; // Rellena la figura
     paint.strokeWidth = 2; // Que tan grueso es el lapiz
 

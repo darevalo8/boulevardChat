@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Boulevard',
+      title: 'Chat Boulevard',
       theme: ThemeData.light().copyWith(
         primaryColor: Color(0xff00b9b0),
         accentColor: Color(0xff00b9b0),
@@ -53,7 +53,8 @@ class _MyAppState extends State<MyApp> {
 
       // home: SignIn(),
 
-      initialRoute: 'signup',
+      // initialRoute: 'public_chat_page',
+      initialRoute: 'initial',
 
       // home: userIsLoggedIn != null
       //     ? userIsLoggedIn ? ChatRooms() : AuthenticateHelper()

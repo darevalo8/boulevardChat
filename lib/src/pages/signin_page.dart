@@ -25,13 +25,17 @@ class _Body extends StatelessWidget {
         ),
         _BackgroundImage(),
         SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-              CurvedBorder(size: 70, corner: Corner.TopLeft),
-              _Content(),
-            ],
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CurvedBorder(size: 70, corner: Corner.TopLeft),
+                _Content(),
+                SizedBox(height: 110),
+              ],
+            ),
           ),
         ),
       ],
@@ -81,6 +85,7 @@ class __SignInFormState extends State<_SignInForm> {
   void signIn() {
     if (_formKey.currentState.validate()) {
       print('Iniciando sesión...');
+      Navigator.pushNamed(context, 'navigation_bar');
     }
   }
 
@@ -137,9 +142,12 @@ class __SignInFormState extends State<_SignInForm> {
             ),
           ),
           SizedBox(height: 25),
-          Text(
-            'Olvidé mi contraseña',
-            style: TextStyle(color: teal, fontWeight: FontWeight.w600),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, 'forgot_password'),
+            child: Text(
+              'Olvidé mi contraseña',
+              style: TextStyle(color: teal, fontWeight: FontWeight.w600),
+            ),
           ),
           SizedBox(height: 25),
           Padding(
@@ -189,9 +197,12 @@ class _BottomPage extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               SizedBox(width: 5),
-              Text(
-                'Ingresa aquí',
-                style: TextStyle(color: teal, fontWeight: FontWeight.w600),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, 'signup'),
+                child: Text(
+                  'Ingresa aquí',
+                  style: TextStyle(color: teal, fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),

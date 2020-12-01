@@ -3,6 +3,8 @@ import 'package:boulevard/src/pages/chat_rooms_screen.dart';
 import 'package:boulevard/src/pages/coversation_screen.dart';
 import 'package:boulevard/src/pages/forgot_password_page.dart';
 import 'package:boulevard/src/pages/initial_page.dart';
+import 'package:boulevard/src/pages/navigation_bar.dart';
+import 'package:boulevard/src/pages/public_chat_page.dart';
 import 'package:boulevard/src/pages/search.dart';
 import 'package:boulevard/src/pages/signin_page.dart';
 import 'package:boulevard/src/pages/signup_page.dart';
@@ -23,5 +25,7 @@ Map<String, WidgetBuilder> applicationRoutes() {
     'signin': (BuildContext context) => SignInPage(),
     'signup': (BuildContext context) => SignUpPage(),
     'forgot_password': (BuildContext context) => ForgotPasswordPage(),
+    'navigation_bar': (BuildContext context) => NavigationBar(),
+    'public_chat_page': (BuildContext context) => PublicChatPage(),
   };
 }

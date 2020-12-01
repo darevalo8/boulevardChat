@@ -71,14 +71,14 @@ class _Content extends StatelessWidget {
             backgroundColor: Colors.black,
             textColor: Colors.white,
             text: 'Registrarse',
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, 'signup'),
           ),
           SizedBox(height: 14),
           ButtonType1(
             backgroundColor: Colors.grey[200],
             textColor: Colors.black,
             text: 'Iniciar sesión',
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, 'signin'),
           ),
           SizedBox(height: 25),
           Row(

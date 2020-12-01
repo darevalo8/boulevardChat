@@ -24,13 +24,17 @@ class _Body extends StatelessWidget {
         ),
         _BackgroundImage(),
         SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-              CurvedBorder(size: 70, corner: Corner.TopRight),
-              _Content(),
-            ],
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CurvedBorder(size: 70, corner: Corner.TopRight),
+                _Content(),
+                SizedBox(height: 110),
+              ],
+            ),
           ),
         ),
       ],
@@ -80,6 +84,7 @@ class __SignInFormState extends State<_SignInForm> {
   void signUp() {
     if (_formKey.currentState.validate()) {
       print('Iniciando sesión...');
+      Navigator.pushNamed(context, 'navigation_bar');
     }
   }
 
